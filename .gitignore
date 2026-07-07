@@ -1,0 +1,23 @@
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test files
+test/
+*.test.zsh
+
+# Local config
+local/
+*.local
+
+# Cache
+.cache/
+*.cache
+
+# Backup files
+*.bak
+*.backup
