@@ -8,14 +8,16 @@ if ! command -v bw &> /dev/null; then
 fi
 
 # Load completions for bw CLI
+# Only generate if missing (not on every shell startup)
 if [[ ! -f "$ZSH_CACHE_DIR/completions/_bw" ]]; then
-  typeset -g -A _comps
-  autoload -Uz _bw
-  _comps[bw]=_bw
+  bw completion --shell zsh >| "$ZSH_CACHE_DIR/completions/_bw" 2>/dev/null
 fi
 
-# Generate completions
-bw completion --shell zsh >| "$ZSH_CACHE_DIR/completions/_bw" &|
+# Load the completion function
+if [[ -f "$ZSH_CACHE_DIR/completions/_bw" ]]; then
+  fpath=("$ZSH_CACHE_DIR/completions" $fpath)
+  autoload -Uz compinit
+fi
 
 #
 # Aliases
